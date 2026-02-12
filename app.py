@@ -171,3 +171,17 @@ def generate(goal: str = Form(...)):
 
     except Exception as e:
         return f"<h3>Error: {str(e)}</h3><a href='/'>Back</a>"
+
+
+last_request_time = {}
+
+@app.middleware("http")
+async def rate_limit(request: Request, call_next):
+    ip = request.client.host
+    now = time()
+
+    if ip in last_request_time and now - last_request_time[ip] < 3:
+        return HTMLResponse("Please wait before sending another request.")
+
+    last_request_time[ip] = now
+    return await call_next(request)
