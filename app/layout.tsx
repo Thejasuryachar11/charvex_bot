@@ -2,26 +2,27 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
+import Navbar from "@/components/navbar"
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'AI Voice Chatbot',
+  title: 'Charvex | Chatbot',
   description: 'Professional AI Voice-to-Voice Chatbot Interface',
-  generator: 'v0.app',
+  generator: 'charvexglobal.com',
   icons: {
     icon: [
       {
-        url: '/icon-light-32x32.png',
+        url: '/logo.png',
         media: '(prefers-color-scheme: light)',
       },
       {
-        url: '/icon-dark-32x32.png',
+        url: '/logo.png',
         media: '(prefers-color-scheme: dark)',
       },
       {
-        url: '/icon.svg',
+        url: '/logo.png',
         type: 'image/svg+xml',
       },
     ],
@@ -31,14 +32,23 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
     <html lang="en">
       <body className="font-sans antialiased">
-        {children}
+
+        {/* Navbar */}
+        <Navbar />
+
+        {/* Page Content */}
+        <div className="pt-20">
+          {children}
+        </div>
+
         <Analytics />
+
       </body>
     </html>
   )

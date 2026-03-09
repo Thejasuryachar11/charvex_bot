@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${apiKey}`,
         'HTTP-Referer': process.env.VERCEL_URL || 'http://localhost:3000',
-        'X-Title': 'AI Voice Chatbot',
+        'X-Title': 'Charvex | Chatbot',
       },
       body: JSON.stringify({
         model: 'openai/gpt-4o-mini',
